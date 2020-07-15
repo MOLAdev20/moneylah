@@ -95,12 +95,12 @@ class CI_Controller {
 
 
 	// Modifikasi Kontroller penyingkatan view
-	public function getView($tampilan)
+	public function getView($tampilan , $data = [])
 	{
 		$this->load->view("partials/header");
 		$this->load->view("partials/navbar");
 		$this->load->view("partials/sidebar");
-		$this->load->view($tampilan);
+		$this->load->view($tampilan, $data);
 		$this->load->view("partials/footer");
 	}
 
