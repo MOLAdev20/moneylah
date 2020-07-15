@@ -73,4 +73,10 @@ class CI_Model {
 		return get_instance()->$key;
 	}
 
+	// Method pintas untuk memanggil flashdata sweet alert
+
+	public function getMessage($init , $title, $text, $type){
+		$this->session->set_flashdata($init, "<script type='text/javascript'>swal('".$title."','".$text."', '".$type."');</script>");
+	}
+
 }
