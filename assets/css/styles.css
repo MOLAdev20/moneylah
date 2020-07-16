@@ -25,9 +25,6 @@ h2 {
 h3, h4 {
   font-weight: 300; }
 
-.large {
-  font-size: 2em; }
-
 .text-muted {
   color: #c5c7cc; }
 
@@ -445,7 +442,7 @@ a.label:hover, a.label:focus {
 
 .panel-widget .large {
   color: #373b45;
-  font-size: 3em; }
+  font-size: 2px; }
 
 .panel-settings {
   list-style: none;
