@@ -52,10 +52,10 @@ class Home extends CI_Controller {
 
 	public function update($id)
 	{
+		$id = decrypt_url($id);
 		$this->form_confirmation();
 
 		if (!empty($id)) {
-			$id = decrypt_url($id);
 			$this->Home_model->update($id);
 		}
 	}

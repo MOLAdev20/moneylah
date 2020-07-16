@@ -93,9 +93,7 @@ class CI_Controller {
 		return self::$instance;
 	}
 
-
-	// Modifikasi Kontroller penyingkatan view
-	public function getView($tampilan , $data = [])
+	public function getView($tampilan, $data = [])
 	{
 		$this->load->view("partials/header");
 		$this->load->view("partials/navbar");
@@ -103,5 +101,8 @@ class CI_Controller {
 		$this->load->view($tampilan, $data);
 		$this->load->view("partials/footer");
 	}
+
+
+	
 
 }

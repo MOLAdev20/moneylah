@@ -28,7 +28,7 @@
 				<div class="panel panel-teal panel-widget border-right">
 					<div class="row no-padding"><em class="fa fa-xl fa-money color-blue"></em>
 						<div style="font-size: 2em; margin-top: 10px">Rp.<?= $this->session->userdata("saldo") ?></div>
-						<div class="text-muted">Total saldo bulan ini</div>
+						<div class="text-muted">Total Pengeluaran bulan ini</div>
 					</div>
 				</div>
 			</div>
@@ -93,7 +93,7 @@
 											<td>Rp.<?= $key["Nominal"] ?></td>
 											<td><?= $key["Keterangan"] ?></td>
 											<td>
-												<a class="btn btn-sm btn-danger konfirmasi" href="<?= base_url('Home/delete/').encrypt_url($key['ID']) ?>"><i class="fa fa-eraser"></i> Hapus</a>
+												<a class="btn btn-sm btn-danger" onclick="return confirm('Hapus data?')" href="<?= base_url('Home/delete/').encrypt_url($key['ID']) ?>"><i class="fa fa-eraser"></i> Hapus</a>
 												<a href="#" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#exampleModal<?= $key['ID'] ?>"><i class="fa fa-pencil"></i> Edit</a>
 											</td>
 										</tr>
@@ -123,11 +123,11 @@
 				</div>
 				<div class="modal-body">
 					
-					<?= form_open("Home/create") ?>
+					<?= form_open("Pengeluaran/create") ?>
 
 						<div class="form-group">
 							<label>Nama Pemasukan</label>
-							<input type="text" name="pemasukan" class="form-control form-control-sm">
+							<input type="text" name="pengeluaran" class="form-control form-control-sm">
 						</div>
 						<div class="form-group">
 							<label>Nominal</label>
@@ -150,7 +150,7 @@
 	</div>
 
 
-	<!-- Modal Untuk Edit data pemasukan -->
+	<!-- Modal Untuk Tambah data pemasukan -->
 
 	
 	<?php foreach ($pemasukan[0] as $key) { ?>
@@ -165,7 +165,7 @@
 				</div>
 				<div class="modal-body">
 					
-					<?= form_open("Home/update/".encrypt_url($key['ID']) ) ?>
+					<?= form_open("Home/create") ?>
 
 						<div class="form-group">
 							<label>Nama Pemasukan</label>

@@ -28,3 +28,27 @@ $(document).on('click', '.panel-heading span.clickable', function(e){
 		$this.find('em').removeClass('fa-toggle-down').addClass('fa-toggle-up');
 	}
 })
+
+
+
+$(".konfirmasi").on("click", function(e){
+
+	e.preventDefault();
+	const tujuan = $(this).attr("href");
+
+	swal({
+		title: "Hapus data?",
+		text: "Data Pemasukan Akan di hapus",
+		icon: "warning",
+		buttons: true,
+		dangerMode: true,
+	})
+	.then((willDelete) => {
+		if (willDelete) {
+			window.location.replace( tujuan ) ;
+		} else {
+			swal("Operasi di batalkan");
+		}
+	});
+
+})

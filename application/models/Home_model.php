@@ -48,9 +48,8 @@ class Home_model extends CI_Model {
 
 	}
 
-	public function add()
+	protected function form_data()
 	{
-		date_default_timezone_set("Asia/Jakarta");
 		$data = [
 					"ID" => "",
 					"Nama_pemasukan" => $this->input->post("pemasukan"), 
@@ -59,8 +58,14 @@ class Home_model extends CI_Model {
 					"Nominal" => $this->input->post("nominal"), 
 					"Keterangan" =>$this->input->post("keterangan"), 
 				];
+		return $data;
+	}
 
-		if($this->db->insert($this->table , $data)){
+	public function add()
+	{
+		date_default_timezone_set("Asia/Jakarta");
+
+		if($this->db->insert($this->table , $this->form_data())){
 			parent::getMessage("msg", "BERHASIL", "Data pemasukan bertambah", "success");
 			redirect('Home/index','refresh');
 		}
@@ -79,6 +84,14 @@ class Home_model extends CI_Model {
 
 		$query =  $this->db->get( $this->table);
 		return $query->result_array();
+	}
+
+	public function update($id)
+	{
+		if ( $this->db->update( $this->table, $this->form_data(), array("ID" => $id) ) ) {
+			parent::getMessage("msg", "Berhasil", "Data Berhasil di Update", "success");
+			redirect('Home/index','refresh');
+		}
 	}
 
 	public function delete($id){
