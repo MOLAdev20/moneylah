@@ -66,12 +66,23 @@ class Home_model extends CI_Model {
 		}
 	}
 
+	public function saldo()
+	{
+		$query = $this->db->query("SELECT SUM(Nominal) FROM $this->table")->result_array();
+
+		foreach ($query as $key) {
+			$this->session->set_userdata("saldo",$key["SUM(Nominal)"]);
+		}
+	}
+
 	public function showData(){
-		$query =  $this->db->get($this->table);
+
+		$query =  $this->db->get( $this->table);
 		return $query->result_array();
 	}
 
 	public function delete($id){
+
 		$query = $this->db->delete($this->table, array("ID" => $id) );
 
 		if ($query) {
