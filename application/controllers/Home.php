@@ -21,7 +21,7 @@ class Home extends CI_Controller {
 	public function index()
 	{
 		// Load tampilan dari controller yang sudah di modifikasi
-		$data['pemasukan'] = [ $this->Home_model->showData(), $this->Home_model->saldo() ];
+		$data['pemasukan'] = [ $this->Home_model->showData() , $this->Home_model->saldo() ];
 		parent::getView("dashboard", $data);
 
 	}
@@ -63,6 +63,7 @@ class Home extends CI_Controller {
 	public function debug()
 	{
 		$this->db->truncate("data_pemasukan");
+		$this->db->truncate("data_pengeluaran");
 	}
 }
 

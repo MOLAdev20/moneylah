@@ -12,8 +12,8 @@ class Pengeluaran extends CI_Controller {
 
 	public function index()
 	{
-		
-		parent::getView("V_pengeluaran");
+		$data['pengeluaran'] = [ $this->Pengeluaran_model->showdb(), $this->Pengeluaran_model->showPengeluaran() ];
+		parent::getView("V_pengeluaran", $data);
 	}
 
 	protected function data_form()
@@ -28,9 +28,20 @@ class Pengeluaran extends CI_Controller {
 
 		if ($this->form_validation->run() == FALSE) {
 			$this->session->set_flashdata("form", "<div class='alert bg-danger'>Semua form wajib di isi</div>");
+			redirect('Pengeluaran','refresh');
 		}else{
 			$this->Pengeluaran_model->add();
 		}
 
+	}
+
+	public function edit($id = [])
+	{
+		if (!empty($id)) {
+			$id = decrypt_url($id);
+			$this->Pengeluaran_model->update($id);
+		}else{
+			show_404();
+		}
 	}
 }

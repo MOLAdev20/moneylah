@@ -27,7 +27,7 @@
 			<div class="col-xs-6 col-md-3 col-lg-3 no-padding">
 				<div class="panel panel-teal panel-widget border-right">
 					<div class="row no-padding"><em class="fa fa-xl fa-money color-blue"></em>
-						<div style="font-size: 2em; margin-top: 10px">Rp.<?= $this->session->userdata("saldo") ?></div>
+						<div style="font-size: 2em; margin-top: 10px">Rp.<?= $pengeluaran[1] ?></div>
 						<div class="text-muted">Total Pengeluaran bulan ini</div>
 					</div>
 				</div>
@@ -35,7 +35,7 @@
 			<div class="col-xs-6 col-md-3 col-lg-3 no-padding">
 				<div class="panel panel-blue panel-widget border-right">
 					<div class="row no-padding"><em class="fa fa-xl fa-download color-orange"></em>
-						<div  style="font-size: 2em; margin-top: 10px"><?= count($pemasukan[0]) ?></div>
+						<div  style="font-size: 2em; margin-top: 10px"><?= count($pengeluaran[0]) ?></div>
 						<div class="text-muted">Jumlah Pemasukan Bulan ini</div>
 					</div>
 				</div>
@@ -84,14 +84,14 @@
 									</tr>
 								</thead>
 								<tbody>
-									<?php $i=1; foreach ($pemasukan[0] as $key ) { ?>
+									<?php $i=1; foreach ($pengeluaran[0] as $key ) { ?>
 										<tr>
 											<td><?= $i++ ?></td>
-											<td><?= $key["Nama_pemasukan"] ?></td>
+											<td><?= $key["Nama_pengeluaran"] ?></td>
 											<td><?= $key["Hari_tanggal"] ?></td>
 											<td><?= $key["Jam"] ?></td>
 											<td>Rp.<?= $key["Nominal"] ?></td>
-											<td><?= $key["Keterangan"] ?></td>
+											<td><?= $key["Catatan"] ?></td>
 											<td>
 												<a class="btn btn-sm btn-danger" onclick="return confirm('Hapus data?')" href="<?= base_url('Home/delete/').encrypt_url($key['ID']) ?>"><i class="fa fa-eraser"></i> Hapus</a>
 												<a href="#" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#exampleModal<?= $key['ID'] ?>"><i class="fa fa-pencil"></i> Edit</a>
@@ -136,7 +136,7 @@
 					
 						<div class="form-group">
 							<label>Keterangan</label>
-							<textarea class="form-control" name="keterangan" ></textarea>
+							<textarea class="form-control" name="catatan" ></textarea>
 						</div>
 
 				</div>
@@ -153,7 +153,7 @@
 	<!-- Modal Untuk Tambah data pemasukan -->
 
 	
-	<?php foreach ($pemasukan[0] as $key) { ?>
+	<?php foreach ($pengeluaran[0] as $key) { ?>
 	<div class="modal fade" id="exampleModal<?= $key['ID'] ?>" tabindex="-1" role="dialog" aria-labelledby="tambah" aria-hidden="true">
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
@@ -165,11 +165,11 @@
 				</div>
 				<div class="modal-body">
 					
-					<?= form_open("Home/create") ?>
+					<?= form_open("Pengeluaran/edit/".encrypt_url($key["ID"]) ) ?>
 
 						<div class="form-group">
 							<label>Nama Pemasukan</label>
-							<input type="text" name="pemasukan" class="form-control form-control-sm" value="<?= $key['Nama_pemasukan'] ?>">
+							<input type="text" name="pengeluaran" class="form-control form-control-sm" value="<?= $key['Nama_pengeluaran'] ?>">
 						</div>
 						<div class="form-group">
 							<label>Nominal</label>
@@ -178,7 +178,7 @@
 					
 						<div class="form-group">
 							<label>Keterangan</label>
-							<textarea class="form-control" name="keterangan" > <?= $key['Keterangan'] ?>  </textarea>
+							<textarea class="form-control" name="catatan"> <?= $key['Catatan'] ?>  </textarea>
 						</div>
 
 				</div>

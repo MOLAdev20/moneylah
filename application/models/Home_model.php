@@ -10,50 +10,14 @@ class Home_model extends CI_Model {
 		$this->load->database();
 	}
 
-	protected function day()
-	{
-		$date = date("D");
-
-		switch ($date) {
-			case 'Sun':
-			$date = "Minggu";
-			break;
-
-			case 'Mon':
-			$date = "Senin";
-			break;
-
-			case 'Tue':
-			$date = "Selasa";
-			break;
-
-			case 'Wed':
-			$date = "Rabu";
-			break;
-
-			case 'Thu':
-			$date = "Kamis";
-			break;
-			
-			case 'Fri':
-			$date = "Jum'at";
-			break;
-
-			case 'Sat':
-			$date = "Sabtu";
-			break;
-		}
-
-		return $date;
-
-	}
+	
 
 	protected function form_data()
 	{
 		$data = [
 					"ID" => "",
 					"Nama_pemasukan" => $this->input->post("pemasukan"), 
-					"Hari_tanggal" => $this->day()." ".date("d m Y"),
+					"Hari_tanggal" => parent::day()." ".date("d m Y"),
 					"Jam" => date("H:i"),
 					"Nominal" => $this->input->post("nominal"), 
 					"Keterangan" =>$this->input->post("keterangan"), 
@@ -71,12 +35,25 @@ class Home_model extends CI_Model {
 		}
 	}
 
-	public function saldo()
+	// Ambil total pemasukan
+
+	public function uangMasuk()
 	{
 		$query = $this->db->query("SELECT SUM(Nominal) FROM $this->table")->result_array();
+		foreach ($query as $key) {
+			return $key["SUM(Nominal)"];
+		}
+
+	}
+	
+	// Ambil total pengeluaran dan hitung dengan saldo yang ada
+
+	public function saldo()
+	{
+		$query = $this->db->query("SELECT SUM(Nominal) FROM data_pengeluaran")->result_array();
 
 		foreach ($query as $key) {
-			$this->session->set_userdata("saldo",$key["SUM(Nominal)"]);
+			$this->session->set_userdata("saldo", $this->uangMasuk() - $key["SUM(Nominal)"] );
 		}
 	}
 

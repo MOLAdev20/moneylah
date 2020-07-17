@@ -79,4 +79,44 @@ class CI_Model {
 		$this->session->set_flashdata($init, "<script type='text/javascript'>swal('".$title."','".$text."', '".$type."');</script>");
 	}
 
+	// Method pintas untuk memanggil hari
+
+	public function day()
+	{
+		$date = date("D");
+
+		switch ($date) {
+			case 'Sun':
+			$date = "Minggu";
+			break;
+
+			case 'Mon':
+			$date = "Senin";
+			break;
+
+			case 'Tue':
+			$date = "Selasa";
+			break;
+
+			case 'Wed':
+			$date = "Rabu";
+			break;
+
+			case 'Thu':
+			$date = "Kamis";
+			break;
+			
+			case 'Fri':
+			$date = "Jum'at";
+			break;
+
+			case 'Sat':
+			$date = "Sabtu";
+			break;
+		}
+
+		return $date;
+
+	}
+
 }
