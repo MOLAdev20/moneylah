@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Lumino - Dashboard</title>
+	<title><?= $this->uri->segment(1)." - ".$this->uri->segment(2) ?></title>
 	<link href="<?= base_url('assets/css/bootstrap.min.css') ?>" rel="stylesheet">
 	<link href="<?= base_url('assets/') ?>css/font-awesome.min.css" rel="stylesheet">
 	<link href="<?= base_url('assets/') ?>css/datepicker3.css" rel="stylesheet">

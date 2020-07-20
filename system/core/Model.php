@@ -119,4 +119,22 @@ class CI_Model {
 
 	}
 
+	// Modifikasi : Ambil data dari tabel pengeluaran, pemasukan, dan hutang
+
+	public function getSaldo($namaTable, $date)
+	{	
+		$query = $this->db->query("SELECT SUM(Nominal) FROM $namaTable WHERE Hari_tanggal LIKE '$date'")->result_array();
+		foreach ($query as $key) {
+			return $key["SUM(Nominal)"];
+		}
+	}
+
+	public function getHutang($date, $status)
+	{
+		$query = $this->db->query("SELECT SUM(Nominal) FROM data_hutang WHERE Hari_tanggal LIKE '$date' AND Status = '$status'")->result_array();
+		foreach ($query as $key) {
+			return $key["SUM(Nominal)"];
+		}
+	}
+
 }

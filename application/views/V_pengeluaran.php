@@ -93,7 +93,7 @@
 											<td>Rp.<?= $key["Nominal"] ?></td>
 											<td><?= $key["Catatan"] ?></td>
 											<td>
-												<a class="btn btn-sm btn-danger" onclick="return confirm('Hapus data?')" href="<?= base_url('Home/delete/').encrypt_url($key['ID']) ?>"><i class="fa fa-eraser"></i> Hapus</a>
+												<a class="btn btn-sm btn-danger konfirmasi" href="<?= base_url('Home/delete/').encrypt_url($key['ID']) ?>"><i class="fa fa-eraser"></i> Hapus</a>
 												<a href="#" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#exampleModal<?= $key['ID'] ?>"><i class="fa fa-pencil"></i> Edit</a>
 											</td>
 										</tr>

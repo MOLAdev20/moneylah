@@ -27,7 +27,7 @@
 			<div class="col-xs-6 col-md-3 col-lg-3 no-padding">
 				<div class="panel panel-teal panel-widget border-right">
 					<div class="row no-padding"><em class="fa fa-xl fa-money color-blue"></em>
-						<div style="font-size: 2em; margin-top: 10px">Rp. <?= $this->session->userdata("saldo"); ?> </div>
+						<div style="font-size: 2em; margin-top: 10px">Rp. <?= $pemasukan[1] ?></div>
 						<div class="text-muted">Total saldo bulan ini</div>
 					</div>
 				</div>

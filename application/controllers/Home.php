@@ -21,7 +21,8 @@ class Home extends CI_Controller {
 	public function index()
 	{
 		// Load tampilan dari controller yang sudah di modifikasi
-		$data['pemasukan'] = [ $this->Home_model->showData() , $this->Home_model->saldo() ];
+		$data['pemasukan'] = [ $this->Home_model->showData() , $this->Home_model->pemasukan() ];
+		$data['totalSaldo'] = $this->Home_model->saldo();
 		parent::getView("dashboard", $data);
 
 	}
@@ -52,18 +53,23 @@ class Home extends CI_Controller {
 
 	public function update($id)
 	{
-		$id = decrypt_url($id);
+		
 		$this->form_confirmation();
 
 		if (!empty($id)) {
+			$id = decrypt_url($id);
 			$this->Home_model->update($id);
 		}
+		show_404();
 	}
 
 	public function debug()
 	{
 		$this->db->truncate("data_pemasukan");
 		$this->db->truncate("data_pengeluaran");
+		$this->db->truncate("data_hutang");
+		$this->db->truncate("data_penghutang");
+		redirect('Home/index','refresh');
 	}
 }
 

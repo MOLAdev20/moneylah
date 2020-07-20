@@ -13,6 +13,7 @@ class Pengeluaran extends CI_Controller {
 	public function index()
 	{
 		$data['pengeluaran'] = [ $this->Pengeluaran_model->showdb(), $this->Pengeluaran_model->showPengeluaran() ];
+		$data['totalSaldo'] = $this->Pengeluaran_model->saldo();
 		parent::getView("V_pengeluaran", $data);
 	}
 

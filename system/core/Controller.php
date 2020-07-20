@@ -97,7 +97,7 @@ class CI_Controller {
 	{
 		$this->load->view("partials/header");
 		$this->load->view("partials/navbar");
-		$this->load->view("partials/sidebar");
+		$this->load->view("partials/sidebar", $data);
 		$this->load->view($tampilan, $data);
 		$this->load->view("partials/footer");
 	}

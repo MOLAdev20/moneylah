@@ -5,6 +5,7 @@ defined("BASEPATH") or exit("No direct script access allowed");
 class Pengeluaran_model extends CI_Model {
 
 	protected $table = "data_pengeluaran";
+	protected $pengeluaran = "data_pengeluaran";
 
 	protected function data_form()
 	{
@@ -31,6 +32,11 @@ class Pengeluaran_model extends CI_Model {
 	public function showdb()
 	{
 		return $this->db->get($this->table)->result_array();
+	}
+
+	public function saldo()
+	{
+		return ( parent::getSaldo( "$this->table", date("%d%m%Y%") ) + parent::getHutang( date("%d%m%Y%") , "Meminjam" ) ) - parent::getSaldo("$this->pengeluaran", date("%d%m%Y%"));
 	}
 
 	// Ambil dan hitung semua data pengeluaran

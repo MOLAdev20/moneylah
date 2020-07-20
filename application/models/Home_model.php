@@ -4,6 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Home_model extends CI_Model {
 
 	private $table = "data_pemasukan";
+	private $pengeluaran = "data_pengeluaran";
 
 	public function __construct()
 	{
@@ -36,25 +37,18 @@ class Home_model extends CI_Model {
 	}
 
 	// Ambil total pemasukan
-
-	public function uangMasuk()
+	public function pemasukan()
 	{
-		$query = $this->db->query("SELECT SUM(Nominal) FROM $this->table")->result_array();
-		foreach ($query as $key) {
-			return $key["SUM(Nominal)"];
-		}
-
+		return parent::getSaldo($this->table, date("%d%m%Y%"));
 	}
+
 	
-	// Ambil total pengeluaran dan hitung dengan saldo yang ada
+	
+	// Ambil total pengeluaran dari File core/Model dan hitung dengan saldo yang ada
 
 	public function saldo()
 	{
-		$query = $this->db->query("SELECT SUM(Nominal) FROM data_pengeluaran")->result_array();
-
-		foreach ($query as $key) {
-			$this->session->set_userdata("saldo", $this->uangMasuk() - $key["SUM(Nominal)"] );
-		}
+		return ( parent::getSaldo( "$this->table", date("%d%m%Y%") ) + parent::getHutang( date("%d%m%Y%") , "Meminjam" ) ) - parent::getSaldo("$this->pengeluaran", date("%d%m%Y%"));	
 	}
 
 	public function showData(){

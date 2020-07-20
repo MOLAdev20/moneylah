@@ -30,6 +30,7 @@ $(document).on('click', '.panel-heading span.clickable', function(e){
 })
 
 
+// Konfirmasi hapus
 
 $(".konfirmasi").on("click", function(e){
 
