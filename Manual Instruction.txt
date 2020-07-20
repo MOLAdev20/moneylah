@@ -1,0 +1,12 @@
+** Aplikasi Sistem manajemen keuangan **
+========================================
+How to install?
+
+- Install webserver seperti Xampp atau Wampp
+- Jalankan mysql dan apachenya
+- Buka phpmyadmin di browser
+- Buat database "moneylah"
+- import file moneylah.sql di dalam db moneylah
+
+=========================================
+Developer : Sabiilul Hikam Azzuhrie
